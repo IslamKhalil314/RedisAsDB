@@ -20,12 +20,9 @@ phases:
       - dotnet build --configuration Release
       # You might need additional build steps like webpack or asset pre-processing
 
-  post_build:
+ post_build:
     commands:
       - echo "Running post-build tasks..."
-      # You can add any post-build tasks here
-
-artifacts:
-  files:
-    - 'RedisAsDB.API/bin/Release/net5.0/publish/**/*' # Change this path according to your publish output
-  base-directory: RedisAsDB.API # Change this to your app's directory
+      - mkdir -p /codebuild/output/YourBuildOutput
+      - cp -r src/YourAspNetCoreApp/bin/Release/net5.0/publish/* /codebuild/output/YourBuildOutput/
+      # Copy build files to a location accessible from the CodeBuild environment
