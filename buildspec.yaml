@@ -3,10 +3,10 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      dotnet: 5.0 # Use the appropriate version of .NET Core SDK
+      dotnet: 7.0 # Use the appropriate version of .NET Core SDK
     commands:
       - echo "Installing dependencies..."
-      - cd src/YourAspNetCoreApp # Change this to your app's directory
+      - cd RedisAsDB.API # Change this to your app's directory
       - dotnet restore
 
   pre_build:
@@ -27,5 +27,5 @@ phases:
 
 artifacts:
   files:
-    - 'src/YourAspNetCoreApp/bin/Release/net5.0/publish/**/*' # Change this path according to your publish output
-  base-directory: src/YourAspNetCoreApp # Change this to your app's directory
+    - 'RedisAsDB.API/bin/Release/net5.0/publish/**/*' # Change this path according to your publish output
+  base-directory: RedisAsDB.API # Change this to your app's directory
