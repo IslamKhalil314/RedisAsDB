@@ -14,6 +14,7 @@ builder.Services.AddSingleton<IConnectionMultiplexer>(
     .Connect(builder.Configuration.GetConnectionString("redisConnection"))
 
 );
+
 WebApplication app = builder.Build();
 
 // Configure the HTTP request pipeline.
