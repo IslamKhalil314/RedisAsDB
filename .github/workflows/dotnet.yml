@@ -47,7 +47,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ github.token }}
         with:
-          tag_name: v1.0.2 # Change this to the desired tag/version
+          tag_name: v1.0.3 # Change this to the desired tag/version
           release_name: Release 1.0.0 # Change this to the desired release name
           body: |
             Describe the changes and updates in this release.
