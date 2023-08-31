@@ -30,6 +30,8 @@ jobs:
 
       - name: Test
         run: dotnet test --no-build --verbosity normal
+      - name: Build and publish
+        run: dotnet publish -c Release -o ./publish
 
   release:
     needs: build
@@ -57,4 +59,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: publish
-          path: bin/Release/net7.0/ # Update this path to the actual path of your publish folder
+          path: ./publish # Update this path to the actual path of your publish folder
