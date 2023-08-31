@@ -44,7 +44,7 @@ jobs:
         id: create_release
         uses: actions/create-release@v1
         env:
-          RedisAsDbActionEnv: ${{ secrets.REDISASDB_TOKEN }}
+          GITHUB_TOKEN: ${{ github.token }}
         with:
           tag_name: v1.0.0 # Change this to the desired tag/version
           release_name: Release 1.0.0 # Change this to the desired release name
