@@ -30,25 +30,21 @@ jobs:
 
       - name: Test
         run: dotnet test --no-build --verbosity normal
-
-  release:
-    needs: build
-    runs-on: ubuntu-latest
-    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
-
-    steps:
+        
       - name: Build and publish
         run: dotnet publish -c Release -o ./publish
+        
       - name: Checkout code
         uses: actions/checkout@v2
+        
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ github.token }}
         with:
-          tag_name: v1.0.3 # Change this to the desired tag/version
-          release_name: Release 1.0.0 # Change this to the desired release name
+          tag_name: v1.0.4 # Change this to the desired tag/version
+          release_name: Release 1.0.4 # Change this to the desired release name
           body: |
             Describe the changes and updates in this release.
           draft: false
@@ -60,3 +56,6 @@ jobs:
         with:
           name: publish
           path: ./publish # Update this path to the actual path of your publish folder
+
+     
+     
