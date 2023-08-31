@@ -30,8 +30,6 @@ jobs:
 
       - name: Test
         run: dotnet test --no-build --verbosity normal
-      - name: Build and publish
-        run: dotnet publish -c Release -o ./publish
 
   release:
     needs: build
@@ -39,9 +37,10 @@ jobs:
     if: github.event_name == 'push' && github.ref == 'refs/heads/master'
 
     steps:
+      - name: Build and publish
+        run: dotnet publish -c Release -o ./publish
       - name: Checkout code
         uses: actions/checkout@v2
-
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
@@ -55,6 +54,7 @@ jobs:
           draft: false
           prerelease: false
 
+      
       - name: Upload Publish Folder
         uses: actions/upload-artifact@v2
         with:
