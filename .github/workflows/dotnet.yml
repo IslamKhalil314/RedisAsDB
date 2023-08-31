@@ -52,3 +52,9 @@ jobs:
             Describe the changes and updates in this release.
           draft: false
           prerelease: false
+
+      - name: Upload Publish Folder
+        uses: actions/upload-artifact@v2
+        with:
+          name: publish
+          path: bin/Release/net7.0/ # Update this path to the actual path of your publish folder
