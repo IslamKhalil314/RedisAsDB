@@ -33,7 +33,6 @@ jobs:
         
       - name: Build and Publish
         run: dotnet publish -c Release -o ./Release
-        working-directory: ./RedisAsDB  # Replace with your ASP.NET Core app folder
 
       - name: Create Release
         id: create_release
