@@ -31,32 +31,37 @@ jobs:
       - name: Test
         run: dotnet test --no-build --verbosity normal
         
-      - name: Build and Publish
-        run: dotnet publish -c Release -o ./Release
+      - name: publish
+        run: dotnet publish -c Release --output ./Release
 
+      - name: Zip folder
+        run: |
+          zip -r Release.zip ./Release
+      - name: Checkout code
+        uses: actions/checkout@v2
+        
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ github.token }}
         with:
-          tag_name: v2.0.1
-          release_name: Release v2.0.1
+          tag_name: v1.0.11 # Change this to the desired tag/version
+          release_name: Release 1.0.11 # Change this to the desired release name
           body: |
-            Release for ${{ github.ref }}
-            Published on: $(date +'%Y-%m-%d %H:%M:%S')
+            Describe the changes and updates in this release.
           draft: false
           prerelease: false
-  
-      - name: Upload Release Artifact
+          
+
+      - name: Upload Release Asset
         id: upload-release-asset
         uses: actions/upload-release-asset@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ github.token }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./Release
-          asset_name: Release.zip  # Change the name as needed
+          asset_name: Release.zip
           asset_content_type: application/zip
 
 
