@@ -46,30 +46,13 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ github.token }}
         with:
-          tag_name: v1.0.7 # Change this to the desired tag/version
-          release_name: Release 1.0.7 # Change this to the desired release name
+          tag_name: v1.0.8 # Change this to the desired tag/version
+          release_name: Release 1.0.8 # Change this to the desired release name
           body: |
             Describe the changes and updates in this release.
           draft: false
           prerelease: false
           
-      - name: Upload Release Artifact
-        id: upload-release-artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: release-artifact
-          path: ./Release.zip
-
-      - name: Get Release ID
-        id: get-release-id
-        run: echo "::set-output name=release_id::${{ steps.create_release.outputs.id }}"
-
-      - name: Download Release Artifact
-        id: download-release-artifact
-        uses: actions/download-artifact@v2
-        with:
-          name: release-artifact
-          path: ./DownloadedRelease
 
       - name: Upload Release Asset
         id: upload-release-asset
@@ -78,7 +61,7 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./DownloadedRelease/Release.zip
+          asset_path: ./Release.zip
           asset_name: Release.zip
           asset_content_type: application/zip
 
