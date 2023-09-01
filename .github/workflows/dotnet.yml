@@ -46,20 +46,18 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ github.token }}
         with:
-          tag_name: v1.0.18 # Change this to the desired tag/version
-          release_name: Release 1.0.18 # Change this to the desired release name
+          tag_name: v1.0.19 # Change this to the desired tag/version
+          release_name: Release 1.0.19 # Change this to the desired release name
           body: |
             Describe the changes and updates in this release.
           draft: false
           prerelease: false
           
-      - name: Publish
-        uses: softprops/action-gh-release@v1
+      - name: Upload Build Artifact
+        uses: actions/upload-artifact@v2
         with:
-          tag_name: v1.0.18
-          files: "Release.zip"
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
+          name: Application_Artifact
+          path: /home/runner/work/RedisAsDb/RedisAsDb/Release/
     
 
 
