@@ -57,7 +57,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: Application_Artifact
-          path: /home/runner/work/RedisAsDb/RedisAsDb/Release/
+          path: /home/runner/work/RedisAsDb/RedisAsDb/Release.zip
     
 
 
