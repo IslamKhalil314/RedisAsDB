@@ -52,28 +52,37 @@ jobs:
             Describe the changes and updates in this release.
           draft: false
           prerelease: false
-
-      
-      - name: Upload release attachment
-        uses: actions/github-script@v4
+          
+      - name: Upload Release Artifact
+        id: upload-release-artifact
+        uses: actions/upload-artifact@v2
         with:
-          script: |
-            const fs = require('fs');
-            const tag = context.ref.replace("refs/tags/", "");
-            // Get release for this tag
-            const release = await github.repos.getReleaseByTag({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              tag
-            });
-            // Upload the release asset
-            await github.repos.uploadReleaseAsset({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              release_id: release.data.id,
-              name: "Release.zip",
-              data: await fs.readFileSync("Release.zip")
-            });
+          name: release-artifact
+          path: ./Release.zip
+
+      - name: Get Release ID
+        id: get-release-id
+        run: echo "::set-output name=release_id::${{ steps.create_release.outputs.id }}"
+
+      - name: Download Release Artifact
+        id: download-release-artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: release-artifact
+          path: ./DownloadedRelease
+
+      - name: Upload Release Asset
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./DownloadedRelease/Release.zip
+          asset_name: Release.zip
+          asset_content_type: application/zip
+
+
 
      
      
