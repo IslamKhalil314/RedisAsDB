@@ -31,9 +31,12 @@ jobs:
       - name: Test
         run: dotnet test --no-build --verbosity normal
         
-      - name: Build and publish
-        run: dotnet publish -c Release -o ./publish
-        
+      - name: publish
+        run: dotnet publish -c Release --output ./Release
+
+      - name: Zip folder
+        run: |
+          zip -r Release.zip ./Release
       - name: Checkout code
         uses: actions/checkout@v2
         
@@ -55,7 +58,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: publish
-          path: ./publish # Update this path to the actual path of your publish folder
+          path: Release.zip # Update this path to the actual path of your publish folder
 
      
      
