@@ -46,8 +46,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ github.token }}
         with:
-          tag_name: v1.0.17 # Change this to the desired tag/version
-          release_name: Release 1.0.17 # Change this to the desired release name
+          tag_name: v1.0.18 # Change this to the desired tag/version
+          release_name: Release 1.0.18 # Change this to the desired release name
           body: |
             Describe the changes and updates in this release.
           draft: false
@@ -56,6 +56,7 @@ jobs:
       - name: Publish
         uses: softprops/action-gh-release@v1
         with:
+          tag_name: v1.0.18
           files: "Release.zip"
         env:
           GITHUB_TOKEN: ${{ github.token }}
