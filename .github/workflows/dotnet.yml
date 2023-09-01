@@ -46,8 +46,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ github.token }}
         with:
-          tag_name: v1.0.13 # Change this to the desired tag/version
-          release_name: Release 1.0.13 # Change this to the desired release name
+          tag_name: v1.0.14 # Change this to the desired tag/version
+          release_name: Release 1.0.14 # Change this to the desired release name
           body: |
             Describe the changes and updates in this release.
           draft: false
@@ -61,7 +61,7 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: .
+          asset_path: ../work/RedisAsDB/RedisAsDB/
           asset_name: Release.zip
           asset_content_type: application/zip
 
