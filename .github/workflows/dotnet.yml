@@ -32,7 +32,7 @@ jobs:
         run: dotnet test --no-build --verbosity normal
         
       - name: Build and Publish
-        run: dotnet publish --self-contained -c Release -o ./Release
+        run: dotnet publish --sc true -c Release -o ./Release
 
       - name: Create Release
         id: create_release
@@ -40,8 +40,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ github.token }}
         with:
-          tag_name: v2.0.20
-          release_name: Release v2.0.20
+          tag_name: v2.0.21
+          release_name: Release v2.0.21
           body: |
             Release for ${{ github.ref }}
             Published on: $(date +'%Y-%m-%d %H:%M:%S')
