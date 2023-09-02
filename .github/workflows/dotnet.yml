@@ -40,8 +40,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ github.token }}
         with:
-          tag_name: v2.0.17
-          release_name: Release v2.0.17
+          tag_name: v2.0.18
+          release_name: Release v2.0.18
           body: |
             Release for ${{ github.ref }}
             Published on: $(date +'%Y-%m-%d %H:%M:%S')
@@ -50,7 +50,12 @@ jobs:
           
       - name: working dir
         run: echo '${{ github.workspace }}'
-
+      - name: Zip folder
+        run: |
+          zip -r Release.zip ./Release
+          
       - name : list Dir
         run: ls
+
+        
       
