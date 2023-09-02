@@ -4,7 +4,7 @@ We are pleased to announce the release of Test App v2.0.20. This version include
 
 ## New Features
 
-- None
+- fixed realse note
 
 ## Improvements
 
