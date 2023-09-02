@@ -10,7 +10,6 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -30,7 +29,7 @@ jobs:
 
       - name: Test
         run: dotnet test --no-build --verbosity normal
-        
+
       - name: Build and Publish
         run: dotnet publish -r win-x64 --self-contained true -c Release -o ./Release
 
@@ -42,21 +41,18 @@ jobs:
         with:
           tag_name: v2.0.22
           release_name: Release v2.0.22
-          body: |
-            Release for ${{ github.ref }}
-            Published on: $(date +'%Y-%m-%d %H:%M:%S')
+          body_path: ${{ github.workspace }}/Release_Note.md
           draft: false
           prerelease: false
-          
+
       - name: working dir
         run: echo '${{ github.workspace }}'
       - name: Zip folder
         run: |
           zip -r Release.zip ./Release
-          
-      - name : list Dir
-        run: ls
 
+      - name: list Dir
+        run: ls
 
       - name: Upload Release Artifact
         id: upload-release-asset
@@ -68,6 +64,3 @@ jobs:
           asset_path: ${{ github.workspace }}/Release.zip
           asset_name: Release.zip # Change the name as needed
           asset_content_type: application/zip
-
-        
-      
