@@ -39,8 +39,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ github.token }}
         with:
-          tag_name: v1.0.0
-          release_name: Release v1.0.0
+          tag_name: v1.0.1
+          release_name: Release v1.0.1
           body_path: ${{ github.workspace }}/Release_Note.md
           draft: false
           prerelease: false
